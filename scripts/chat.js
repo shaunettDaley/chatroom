@@ -40,7 +40,8 @@ class Chatroom{
     }
 
 
-const chatroom = new Chatroom('general', 'Jai');
+
+    
 /*console.log(chatroom);
 chatroom.addChat('hello there').then(()=>{
     console.log('chat added');
@@ -48,6 +49,3 @@ chatroom.addChat('hello there').then(()=>{
     console.log("error found");
 })*/
 
-chatroom.getChat(data => {
-console.log(data);
-});
