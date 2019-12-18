@@ -8,6 +8,7 @@ class Chatroom{
         this.room = room;
         this.username = username;
         this.chats = db.collection('chat');
+        this.unsub;
     }
 
     //create an asny function since i am talking to an external server
@@ -27,7 +28,10 @@ class Chatroom{
         //get the chat real time 
         getChat(callback){
             //connect to the database and get the  data
-            this.chats.onSnapshot(snapshot => {
+           this.unsub = this.chats
+            .where('room','==',this.room)
+            .orderBy('created_at')
+            .onSnapshot(snapshot => {
                 snapshot.docChanges().forEach(changes => {
                    if(changes.type === "added"){
                        //u[date my ui
@@ -37,10 +41,26 @@ class Chatroom{
             })
         }
 
+        //update room
+        updateRoom(room){
+            this.room =room;
+            console.log('room updated');
+            if(this.unsub){
+                this.unsub(); //this will unsubscribe from any current 
+            }
+            
+        }
+
+        //update the username
+        updateUsername(username){
+            this.username = username;
+
+        }
+
     }
 
 
-const chatroom = new Chatroom('general', 'Jai');
+
 /*console.log(chatroom);
 chatroom.addChat('hello there').then(()=>{
     console.log('chat added');
@@ -48,6 +68,16 @@ chatroom.addChat('hello there').then(()=>{
     console.log("error found");
 })*/
 
-chatroom.getChat(data => {
-console.log(data);
-});
+/*
+
+setTimeout(()=> {
+    chatroom.updateRoom('music');
+    chatroom.updateUsername('mike');
+    chatroom.getChat(data => {
+        
+      console.log(data);
+        });
+        chatroom.addChat('Hello');
+       
+},3000)
+*/
