@@ -61,6 +61,7 @@ class Chatroom{
 
 
 
+    
 /*console.log(chatroom);
 chatroom.addChat('hello there').then(()=>{
     console.log('chat added');
@@ -68,16 +69,3 @@ chatroom.addChat('hello there').then(()=>{
     console.log("error found");
 })*/
 
-/*
-
-setTimeout(()=> {
-    chatroom.updateRoom('music');
-    chatroom.updateUsername('mike');
-    chatroom.getChat(data => {
-        
-      console.log(data);
-        });
-        chatroom.addChat('Hello');
-       
-},3000)
-*/

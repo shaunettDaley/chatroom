@@ -1,8 +1,14 @@
-//instance of the chat class
-const chatroom = new Chatroom('general', 'Jai');
 
-//get the data from the chat database and render on UI
+//dom queries
+const chatList = document.querySelector('.chat-list');
+
+// class instances 
+const chatroom = new Chatroom('general', 'Jai');
+const chatui = new ChatUI(chatList);
+
+//get the chat and render
 chatroom.getChat(data => {
-        
-    console.log(data);
-      });
+    chatui.render(data);
+    });
+
+
