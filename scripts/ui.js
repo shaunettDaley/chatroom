@@ -9,12 +9,22 @@ class ChatUI{
     constructor(list){
         this.list = list
     }
+
+    //clear the chat window
+    clear(){
+        this.list.innerText = '';
+    }
+
     render(data){ // creating the html template
+        const when = dateFns.distanceInWordsToNow(
+            data.created_at.toDate(),
+            {addSuffix: true}
+        );
         const html = `
         <li class="list-group-item">
         <span class="username">${data.username}</span>
         <span class="message">${data.message}</span>
-        <div class="time">${data.created_at.toDate()}</div>
+        <div class="time">${when}</div>
         `
         this.list.innerHTML += html;
     }
